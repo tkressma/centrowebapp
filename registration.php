@@ -117,13 +117,73 @@ function validatePassword($password){
 include('head.php');
 ?>
 <head>
-<link href="signin.css" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: white;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Add padding to containers */
+.container {
+  padding: 16px;
+  background-color: #f1f1f1;
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: white;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: white;
+  outline: none;
+}
+
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #0071C1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for the submit button */
+.registerbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.registerbtn:hover {
+  opacity: 1;
+}
+
+/* Add a blue text color to links */
+a {
+  color: dodgerblue;
+}
+
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+  background-color: #0071C1;
+  text-align: center;
+}
+</style>
 </head>
 <body class="text-center">
-<div class="container">
-	<div>
-	<h1 class="h2" align="center">&nbsp; Register an Account</h1><hr>
-    </div>
 	<?php
 	if(isset($errMSG)){
 			?>
@@ -141,42 +201,37 @@ include('head.php');
 	}
 	?>   
 
-<form id="form" method="post" enctype="multipart/form-data" class="form-horizontal" style="margin: 0 300px 0 300px;border: solid 1px;border-radius:4px">
-	<table class="table table-responsive">
-    <tr>
-        <? $r1 = rmd5(rand().mocrotime(TRUE)); ?>
-    	<td><label class="control-label">Username</label></td>
-        <td><input class="form-control" type="text" name="<? echo $r1; ?>" placeholder="Enter Username." autocomplete="off" readonly 
+<form id="form" method="post" enctype="multipart/form-data">
+  <div class="container">
+    <h1><b>Register</b></h1>
+    <p>Please fill in this form to create an account.</p>
+    <hr>
+	
+	<? $r1 = rmd5(rand().mocrotime(TRUE)); ?>
+	<label class="control-label">Username:</label></td>
+    <input class="form-control" type="text" name="<? echo $r1; ?>" placeholder="Enter Username." autocomplete="off" readonly 
     onfocus="this.removeAttribute('readonly');" />
-            <input type="hidden" name="__autocomplete_fix_<? echo $r1; ?>" value="newusername" /> 
+    <input type="hidden" name="__autocomplete_fix_<? echo $r1; ?>" value="newusername" /> 
 
-        </td>
-    </tr>
-    <tr>
-        <? $r2 = rmd5(rand().mocrotime(TRUE)); ?>
-    	<td><label class="control-label">Password</label></td>
-        <td>
-            <input class="form-control" type="password" name="<? echo $r2; ?>"  placeholder="Enter password." autocomplete="off" readonly 
-                   onfocus="this.removeAttribute('readonly');" />
-            <input type="hidden" name="__autocomplete_fix_<? echo $r2; ?>" value="newpassword" /> 
-        </td>
-    </tr>
-    <tr>
-        <? $r3 = rmd5(rand().mocrotime(TRUE)); ?>
-    	<td><label class="control-label">Confirm your Password</label></td>
-        <td>
-            <input class="form-control" type="password" name="<? echo $r3; ?>"  placeholder="Enter password again." autocomplete="off" readonly 
-                   onfocus="this.removeAttribute('readonly');" />
-            <input type="hidden" name="__autocomplete_fix_<? echo $r3; ?>" value="newconfirmpassword" /> 
-        </td>
-    </tr>
-    <tr>
-        <td colspan="2" align="center">
-        <button type="submit" name="submit"  class="btn btn-primary"><span class="glyphicon glyphicon-floppy-save"></span>&nbsp; Create Account</button>
-        </td>
-    </tr>
-    </table>
+	<? $r2 = rmd5(rand().mocrotime(TRUE)); ?>
+    <label class="control-label">Password:</label></td>
+    <input class="form-control" type="password" name="<? echo $r2; ?>"  placeholder="Enter password." autocomplete="off" readonly 
+    onfocus="this.removeAttribute('readonly');" />
+    <input type="hidden" name="__autocomplete_fix_<? echo $r2; ?>" value="newpassword" /> 
+
+	<? $r3 = rmd5(rand().mocrotime(TRUE)); ?>
+    <label class="control-label">Confirm your Password:</label></td>
+    <input class="form-control" type="password" name="<? echo $r3; ?>"  placeholder="Enter password again." autocomplete="off" readonly 
+    onfocus="this.removeAttribute('readonly');" />
+    <input type="hidden" name="__autocomplete_fix_<? echo $r3; ?>" value="newconfirmpassword" /> 
+	
+    <hr>
+	<button type="submit" name="submit"  class="btn btn-primary"></span>&nbsp; Create Account</button>
+  </div>
+  
+  <div class="container signin">
+    <p><font color=white>Already have an account? </font><a href="index.php">Sign in</a>.</p>
+  </div>
 </form>
-</div>
 </body>
 </html>
